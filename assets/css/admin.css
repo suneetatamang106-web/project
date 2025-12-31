@@ -1,9 +1,11 @@
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background: #eef3f3;
 }
 
+/* NAVBAR */
 .navbar {
     background: #d32f2f;
     color: white;
@@ -13,36 +15,73 @@ body {
     justify-content: space-between;
 }
 
-.navbar a {
-    color: white;
-    text-decoration: none;
-    margin-left: 15px;
+.nav-left {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-center {
     font-size: 14px;
 }
 
-.dashboard {
+.nav-right a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-right a:hover {
+    text-decoration: underline;
+}
+
+.logout {
+    font-weight: bold;
+}
+
+/* PAGE */
+.container {
     padding: 30px;
+}
+
+.page-title {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* DASHBOARD CARDS */
+.dashboard {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
 }
 
 .card {
-    background: white;
-    border-radius: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
     padding: 20px;
-    border: 1px solid #ccc;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .card h3 {
     color: #d32f2f;
-    margin: 0;
+    font-size: 22px;
 }
 
 .card p {
-    margin: 5px 0;
+    color: #555;
+    font-size: 14px;
 }
 
+.card strong {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* FOOTER */
 .footer {
     background: #d32f2f;
     color: white;
