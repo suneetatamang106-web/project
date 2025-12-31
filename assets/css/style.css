@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  height: 100vh;
+}
+
+/* Background */
+.form-container {
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card */
+.card {
+  width: 360px;
+  background: rgba(20, 24, 26, 0.973);
+  padding: 22px;
+  border-radius: 10px;
+  color: #fff;
+}
+
+/* Heading */
+.card h2 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* Message */
+.msg {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #ffc107;
+}
+
+/* Inputs */
+.card input,
+.card select {
+  width: 100%;
+  padding: 9px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+/* Button */
+.card button {
+  width: 100%;
+  padding: 10px;
+  background: #dc3545;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background: #b02a37;
+}
+
+/* Footer */
+.form-footer {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.form-footer a {
+  color: #ffc107;
+  text-decoration: none;
+  font-weight: bold;
+}

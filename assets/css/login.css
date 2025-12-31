@@ -1,0 +1,93 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:url("../../images/bgg.jpg") center/cover no-repeat;
+}
+
+
+/* Login Box */
+.login-box{
+    width:380px;
+    padding:40px;
+    border-radius:12px;
+    backdrop-filter:blur(8px);
+    background:rgba(255,255,255,0.15);
+    box-shadow:0 0 25px rgba(0,255,255,0.8);
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    0% { box-shadow:0 0 15px cyan; }
+    100% { box-shadow:0 0 40px #00eaff; }
+}
+
+.login-box h2{
+    text-align:center;
+    color:white;
+    margin-bottom:20px;
+}
+
+/* Inputs */
+.input-box input,
+.input-group input,
+.input-box select{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:5px;
+    outline:none;
+    background:#ffffffd9;
+    font-size:15px;
+    margin-bottom:15px;
+}
+
+/* Password toggle */
+.input-group{
+    position:relative;
+}
+
+.toggle-pass{
+    position:absolute;
+    right:12px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:#0ff;
+    font-size:18px;
+}
+
+/* Button */
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#00eaff;
+    color:#000;
+    font-size:18px;
+    margin-top:10px;
+    border-radius:5px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#00c8d6;
+}
+
+/* Error Message */
+.error{
+    background:red;
+    color:white;
+    padding:8px;
+    text-align:center;
+    border-radius:4px;
+    margin-bottom:10px;
+}
