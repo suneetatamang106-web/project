@@ -12,38 +12,40 @@ $email    = trim($_POST['email']);
 $password = trim($_POST['password']);
 $role     = trim($_POST['role']);
 
-/* Fetch user by email & role */
-$stmt = mysqli_prepare(
-    $conn,
-    "SELECT id, name, password, role FROM users WHERE email=? AND role=? LIMIT 1"
+/* Fetch user */
+$stmt = $conn->prepare(
+    "SELECT user_id, username, password, role, status 
+     FROM users 
+     WHERE email=? AND role=? 
+     LIMIT 1"
 );
-mysqli_stmt_bind_param($stmt, "ss", $email, $role);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
+$stmt->bind_param("ss", $email, $role);
+$stmt->execute();
+$result = $stmt->get_result();
 
-if ($user = mysqli_fetch_assoc($result)) {
+if ($user = $result->fetch_assoc()) {
 
-    /* Verify password */
     if (password_verify($password, $user['password'])) {
 
-        /* Create Session */
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['name']    = $user['name'];
+        /* Create session */
+        $_SESSION['user_id'] = $user['user_id'];
+        $_SESSION['name']    = $user['username'];
         $_SESSION['role']    = $user['role'];
+        $_SESSION['status']  = $user['status'];
 
-        /* Role-based Redirect */
-        switch ($user['role']) {
-            case 'ADMIN':
-                header("Location: admin/dashboard.php");
-                break;
+        /* Admin approval check */
+        if ($user['role'] === 'admin' && $user['status'] !== 'approved') {
+            header("Location: login.php?error=Admin not approved yet");
+            exit();
+        }
 
-            case 'DONOR':
-                header("Location: donor/dashboard.php");
-                break;
-
-            case 'PATIENT':
-                header("Location: patient/dashboard.php");
-                break;
+        /* Redirect by role */
+        if ($user['role'] === 'admin') {
+            header("Location: admin/dashboard.php");
+        } elseif ($user['role'] === 'donor') {
+            header("Location: donor/dashboard.php");
+        } else {
+            header("Location: patient/dashboard.php");
         }
         exit();
 
