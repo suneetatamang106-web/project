@@ -35,7 +35,7 @@ $error = $_GET['error'] ?? '';
             <select name="role" required>
                 <option value="admin">Admin</option>
 <option value="donor">Donor</option>
-<option value="patient">Patient</option>
+<option value="patient">Patient</option>    
             </select>
         </div>
 
