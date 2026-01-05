@@ -100,7 +100,7 @@ CREATE TABLE `patients` (
   `gender` enum('male','female','other') NOT NULL,
   `age` int(11) NOT NULL,
   `blood_group` varchar(5) NOT NULL,
-  `contact` varchar(20) DEFAULT NULL,
+  `mobile` varchar(15) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
