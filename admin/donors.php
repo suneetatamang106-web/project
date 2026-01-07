@@ -6,25 +6,29 @@ include("../includes/admin_auth.php");
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Donors - Admin</title>
+    <title>Manage Donors</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
-<body>
+
+<body class="admin-body">
 
 <?php include("navbar.php"); ?>
 
-<div class="container">
-    <h2 class="page-title">Donors List</h2>
+<div class="main-wrapper">
+
+    <h2 class="page-title">Manage Donors</h2>
 
     <table class="data-table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
+                <th>S.No</th>
+                <th>Donor ID</th>
+                <th>Donor Name</th>
                 <th>Email</th>
                 <th>Mobile</th>
                 <th>Blood Group</th>
-                <th>Actions</th>
+                <th>Medical Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -33,34 +37,58 @@ include("../includes/admin_auth.php");
 $sql = "
 SELECT 
     d.donor_id,
-    u.username,
-    u.email,
+    d.medical_status,
     d.mobile,
-    d.blood_group
+    d.blood_group,
+    u.username,
+    u.email
 FROM donors d
 JOIN users u ON d.user_id = u.user_id
+ORDER BY d.donor_id DESC
 ";
+
 $result = mysqli_query($conn, $sql);
+$sn = 1;
 
 while ($row = mysqli_fetch_assoc($result)) {
 ?>
 <tr>
+    <td><?= $sn++; ?></td>
     <td><?= $row['donor_id']; ?></td>
     <td><?= $row['username']; ?></td>
     <td><?= $row['email']; ?></td>
     <td><?= $row['mobile']; ?></td>
     <td><?= $row['blood_group']; ?></td>
+
+    <td class="<?= $row['medical_status'] == 'fit' ? 'status-fit' : 'status-unfit'; ?>">
+        <?= ucfirst($row['medical_status']); ?>
+    </td>
+
     <td>
-        <a href="donor_edit.php?id=<?= $row['donor_id']; ?>" class="btn-edit">Edit</a>
-        <a href="donor_delete.php?id=<?= $row['donor_id']; ?>"
-           class="btn-delete"
-           onclick="return confirm('Delete this donor?')">Delete</a>
+        <div class="action-btns">
+            <a href="donor_medical_report.php?id=<?= $row['donor_id']; ?>" class="btn-view">
+                View
+            </a>
+            <a href="edit_donor.php?id=<?= $row['donor_id']; ?>" class="btn-edit">
+                Edit
+            </a>
+            <a href="delete_donor.php?id=<?= $row['donor_id']; ?>" 
+               class="btn-delete"
+               onclick="return confirm('Delete this donor?');">
+                Delete
+            </a>
+        </div>
     </td>
 </tr>
 <?php } ?>
 
         </tbody>
     </table>
+
+</div>
+
+<div class="footer">
+    © 2025 Blood Bank Management System
 </div>
 
 </body>

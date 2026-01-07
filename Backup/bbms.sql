@@ -1,9 +1,10 @@
+-- Active: 1757825550086@@127.0.0.1@3306
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2026 at 05:48 AM
+-- Generation Time: Jan 05, 2026 at 09:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,15 +41,16 @@ CREATE TABLE `blood_stock` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `donations`
+-- Table structure for table `donation_requests`
 --
 
-CREATE TABLE `donations` (
+CREATE TABLE `donation_requests` (
   `donation_id` int(11) NOT NULL,
   `donor_id` int(11) NOT NULL,
   `blood_group` varchar(5) NOT NULL,
   `component` enum('Whole Blood','Plasma','Platelets','RBC') NOT NULL,
   `units` int(11) NOT NULL,
+  `disease` varchar(100) DEFAULT NULL,
   `disease_test` enum('negative','positive') DEFAULT 'negative',
   `donation_date` date DEFAULT NULL,
   `status` enum('pending','approved') DEFAULT 'pending',
@@ -72,8 +74,16 @@ CREATE TABLE `donors` (
   `diseases` varchar(255) DEFAULT NULL,
   `last_donation_date` date DEFAULT NULL,
   `status` enum('eligible','not_eligible') DEFAULT 'eligible',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `mobile` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `donors`
+--
+
+INSERT INTO `donors` (`donor_id`, `user_id`, `gender`, `age`, `weight`, `blood_group`, `hemoglobin`, `diseases`, `last_donation_date`, `status`, `created_at`, `mobile`) VALUES
+(1, 1, 'male', 21, 45.00, 'A', 14.00, 'no', NULL, 'eligible', '2026-01-03 12:18:14', '9843346607');
 
 -- --------------------------------------------------------
 
@@ -100,10 +110,17 @@ CREATE TABLE `patients` (
   `gender` enum('male','female','other') NOT NULL,
   `age` int(11) NOT NULL,
   `blood_group` varchar(5) NOT NULL,
-  `mobile` varchar(15) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `mobile` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `patients`
+--
+
+INSERT INTO `patients` (`patient_id`, `user_id`, `gender`, `age`, `blood_group`, `address`, `created_at`, `mobile`) VALUES
+(1, 2, 'female', 21, 'B+', 'No', '2026-01-03 12:22:26', '9841412565');
 
 -- --------------------------------------------------------
 
@@ -138,6 +155,15 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`, `status`, `created_at`) VALUES
+(1, 'Nirab Ballab Pant', 'nirabpant035@gmail.com', '$2y$10$MfRBy95nkUXsupaFp9BSCOqPZ1JDU2C2omEeKohuu/IwOFH6amtzu', 'admin', 'approved', '2026-01-01 13:47:01'),
+(2, 'Sunita Tamang', 'suneetatamang201@gmail.com', '$2y$10$/mlahs5JPUQukXcM0pqcheR0Gl5CXjIfzBZGH8cCWbA6V1TLQxohy', 'donor', 'pending', '2026-01-03 05:39:50'),
+(3, 'syam', 'rita@gmail.com', '$2y$10$Tq9q0Zn7gwC2fFbfleFYOujGCGNpSSmEUebrft05z/IphAhFM2TQK', 'donor', 'pending', '2026-01-04 06:00:14');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -148,9 +174,9 @@ ALTER TABLE `blood_stock`
   ADD PRIMARY KEY (`stock_id`);
 
 --
--- Indexes for table `donations`
+-- Indexes for table `donation_requests`
 --
-ALTER TABLE `donations`
+ALTER TABLE `donation_requests`
   ADD PRIMARY KEY (`donation_id`),
   ADD KEY `donor_id` (`donor_id`);
 
@@ -200,16 +226,16 @@ ALTER TABLE `blood_stock`
   MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `donations`
+-- AUTO_INCREMENT for table `donation_requests`
 --
-ALTER TABLE `donations`
+ALTER TABLE `donation_requests`
   MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `donors`
 --
 ALTER TABLE `donors`
-  MODIFY `donor_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `donor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -221,7 +247,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `requests`
@@ -233,17 +259,17 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `donations`
+-- Constraints for table `donation_requests`
 --
-ALTER TABLE `donations`
-  ADD CONSTRAINT `donations_ibfk_1` FOREIGN KEY (`donor_id`) REFERENCES `donors` (`donor_id`);
+ALTER TABLE `donation_requests`
+  ADD CONSTRAINT `donation_requests_ibfk_1` FOREIGN KEY (`donor_id`) REFERENCES `donors` (`donor_id`);
 
 --
 -- Constraints for table `donors`

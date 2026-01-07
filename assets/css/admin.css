@@ -31,87 +31,14 @@
 
 /* MAIN */
 .main-wrapper {
-    flex: 1;
+    width: 100%;
     padding: 30px;
-    max-width: 1200px;
-    margin: auto;
 }
 
+/* PAGE TITLE */
 .page-title {
     text-align: center;
     margin-bottom: 25px;
-    color: #333;
-}
-
-/* ===== SUMMARY CARDS ===== */
-.summary-dashboard {
-    display: grid;
-    grid-template-columns: repeat(2, 220px);
-    gap: 20px;
-    justify-content: center;
-    margin-bottom: 40px;
-}
-
-/* ===== BLOOD STOCK CARDS ===== */
-.stock-dashboard {
-    display: grid;
-    grid-template-columns: repeat(5, 200px);
-    gap: 20px;
-    justify-content: center;
-}
-
-/* CARD */
-.card {
-    background: #ffffff;
-    border: 1px solid #dcdcdc;
-    border-radius: 6px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-.card h3 {
-    color: #d32f2f;
-    font-size: 22px;
-}
-
-.card p {
-    font-size: 14px;
-    color: #555;
-}
-
-.card strong {
-    display: block;
-    margin-top: 10px;
-}
-
-/* FOOTER */
-.footer {
-    background: #d32f2f;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
-
-.data-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-}
-
-.data-table th, .data-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
-
-.data-table th {
-    background: #d32f2f;
-    color: white;
-}
-.page-title {
-    text-align: center;
-    margin-bottom: 20px;
     color: #333;
 }
 
@@ -119,27 +46,65 @@
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    background: #f7fdfc;
+    background: #ffffff;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .data-table th {
     background: #e0f2f1;
     color: #333;
-    padding: 10px;
-    border: 1px solid #ccc;
+    font-weight: bold;
 }
 
-.data-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
+/* FIX COLUMN WIDTHS (VERY IMPORTANT) */
+.data-table th:nth-child(7),
+.data-table td:nth-child(7) {
+    width: 140px;
 }
 
-/* BUTTONS */
+.data-table th:nth-child(8),
+.data-table td:nth-child(8) {
+    width: 230px;
+}
+
+/* MEDICAL STATUS */
+.status-fit {
+    color: green;
+    font-weight: bold;
+}
+
+.status-unfit {
+    color: red;
+    font-weight: bold;
+}
+
+/* ACTION BUTTONS */
+.action-btns {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-view {
+    background: #1976d2;
+    color: white;
+    padding: 6px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
 .btn-edit {
     background: #2e7d32;
     color: white;
-    padding: 5px 10px;
+    padding: 6px 12px;
     text-decoration: none;
     border-radius: 4px;
     font-size: 13px;
@@ -148,47 +113,23 @@
 .btn-delete {
     background: #c62828;
     color: white;
-    padding: 5px 10px;
+    padding: 6px 12px;
     text-decoration: none;
     border-radius: 4px;
     font-size: 13px;
 }
 
+.btn-view:hover,
 .btn-edit:hover,
 .btn-delete:hover {
-    opacity: 0.8;
-}
-.data-table {
-    width: 100%;
-    border-collapse: collapse;
+    opacity: 0.85;
 }
 
-.data-table th, .data-table td {
-    padding: 10px;
-    border: 1px solid #ccc;
-}
-
-.btn-edit {
-    background: #1976d2;
-    color: white;
-    padding: 5px 10px;
-    text-decoration: none;
-}
-
-.btn-delete {
+/* FOOTER */
+.footer {
+    margin-top: auto;
     background: #d32f2f;
     color: white;
-    padding: 5px 10px;
-    text-decoration: none;
+    text-align: center;
+    padding: 10px;
 }
-
-.form-box {
-    max-width: 400px;
-}
-
-.form-box input, .form-box button {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-}
-

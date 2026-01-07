@@ -41,7 +41,8 @@ $error = $_GET['error'] ?? '';
 
         <button type="submit" name="login">Login</button>
     </form>
-
+    <div class="form-footer"   >
+        Don't have an account? <a href="register.php">Register</a>
 </div>
 
 <script>
@@ -50,6 +51,5 @@ function togglePassword() {
     pwd.type = pwd.type === "password" ? "text" : "password";
 }
 </script>
-
 </body>
 </html>
