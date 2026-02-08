@@ -61,6 +61,8 @@ if (isset($_POST['register'])) {
 <meta charset="utf-8">
 <title>Register - Blood Bank</title>
 <link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/validation.js"></script>
+
 </head>
 <body>
 

@@ -8,7 +8,7 @@ $error = $_GET['error'] ?? '';
 <title>Login - Blood Bank</title>
 
 <link rel="stylesheet" href="assets/css/login.css">
-
+<script src="assets/js/login_validation.js"></script>
 </head>
 <body>
 

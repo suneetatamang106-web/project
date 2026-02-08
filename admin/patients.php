@@ -4,16 +4,17 @@ include("../includes/admin_auth.php");
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Patients - Admin</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
-<body>
+
+<body class="admin-body">
 
 <?php include("navbar.php"); ?>
 
-<div class="container">
+<div class="main-wrapper">
     <h2 class="page-title">List of all Patients</h2>
 
     <table class="data-table">
@@ -24,6 +25,7 @@ include("../includes/admin_auth.php");
                 <th>Patient Name</th>
                 <th>Patient Email</th>
                 <th>Mobile No</th>
+                <th>Medical Test</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -51,11 +53,25 @@ while ($row = mysqli_fetch_assoc($result)) {
     <td><?= $row['username']; ?></td>
     <td><?= $row['email']; ?></td>
     <td><?= $row['mobile']; ?></td>
+
+    <!-- MEDICAL REPORT VIEW -->
     <td>
-        <a href="patient_edit.php?id=<?= $row['patient_id']; ?>" class="btn-edit">Edit</a>
-        <a href="patient_delete.php?id=<?= $row['patient_id']; ?>"
+        <a href="patient_medical_view.php?id=<?= $row['patient_id']; ?>" 
+           class="btn-edit">
+            View Report
+        </a>
+    </td>
+
+    <!-- ACTIONS -->
+    <td>
+        <a href="patient_edit.php?id=<?= $row['patient_id']; ?>" 
+           class="btn-edit">Edit</a>
+
+        <a href="patient_delete.php?id=<?= $row['patient_id']; ?>" 
            class="btn-delete"
-           onclick="return confirm('Delete this patient?')">Delete</a>
+           onclick="return confirm('Delete this patient?')">
+           Delete
+        </a>
     </td>
 </tr>
 <?php } ?>
@@ -63,6 +79,10 @@ while ($row = mysqli_fetch_assoc($result)) {
         </tbody>
     </table>
 </div>
+
+<footer class="footer">
+    © 2025 Blood Bank Management System
+</footer>
 
 </body>
 </html>
